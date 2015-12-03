@@ -22,16 +22,13 @@ class Integrate
 
     public function sendData(array $data = NULL)
     {
-        // calls $this->package->postData($data);
+        $this->package->postData($data);
     }
 
     public function getHtml()
     {
-        // calls $this->package->getJson();
-        // formats JSON as HTML
-        // returns HTML
         $json = $this->package->getJson();
-        return $json;
+        return $this->format(json_decode($json));
     }
 
     private function validatePackage($packageName)
@@ -41,5 +38,34 @@ class Integrate
         }
 
         return false;
+    }
+
+    private function format($data)
+    {
+        $html = '<form method="POST">';
+
+        foreach ($data as $field) {
+            if (isset($field->type)) {
+                switch($field->type) {
+                    case 'select':
+                        $html .= '<select name="' . $field->name . '" id="' . $field->name . '">';
+                        foreach($field->options as $option) {
+                            $html .= '<option value="' . $option . '">' . $option . '</option>';
+                        }
+                        $html .= '</select>';
+                        break;
+                }
+            }
+        }
+
+        if (isset($data->messages) && is_array($data->messages)) {
+            foreach ($data->messages as $message) {
+                $html .= $message . '<br />';
+            }
+        } else {
+            $html .= '<input type="submit">';
+        }
+
+        return $html .= '</form>';
     }
 }
