@@ -52,7 +52,7 @@ class Integrate
                         foreach($field->options as $option) {
                             $html .= '<option value="' . $option . '">' . $option . '</option>';
                         }
-                        $html .= '</select>';
+                        $html .= '</select><br />';
                         break;
                 }
             }
@@ -63,7 +63,7 @@ class Integrate
                 $html .= $message . '<br />';
             }
         } else {
-            $html .= '<input type="submit">';
+            $html .= '<br /><br /><button type="submit" class="btn btn-md btn-primary" name="Migrate Database">';
         }
 
         return $html .= '</form>';
