@@ -30,7 +30,8 @@ class Integrate
         // calls $this->package->getJson();
         // formats JSON as HTML
         // returns HTML
-        return json_encode([]);
+        $json = $this->package->getJson();
+        return $json;
     }
 
     private function validatePackage($packageName)
