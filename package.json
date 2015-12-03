@@ -1,0 +1,21 @@
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "Tohmua/IntegrationGate",
+                "version": "dev-master",
+                "source": {
+                    "url": "git://github.com/Tohmua/IntegrationGate.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-4" : {
+                        "Tohmua\\IntegrationGate\\": "src"
+                    }
+                }
+            }
+        }
+    ]
+}
